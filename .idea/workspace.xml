@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e59d86d5-5d40-4de0-aad1-f2437650e36c" name="Changes" comment="added task.md and Game.class template">
-      <change afterPath="$PROJECT_DIR$/src/test/java/GameTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="e59d86d5-5d40-4de0-aad1-f2437650e36c" name="Changes" comment="Game.class tests added">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ScoreBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +84,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Gradle.ScoreBoardLib [test]">
+  <component name="RunManager" selected="Gradle.GameTest.gameEqualityTest">
     <configuration name="GameTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -101,6 +99,29 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;GameTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="GameTest.gameEqualityTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;GameTest.gameEqualityTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -152,27 +173,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ScoreBoardLib [testClasses]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="testClasses" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="ScoreBoardLib [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -196,11 +196,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.GameTest.gameEqualityTest" />
+        <item itemvalue="Gradle.GameTest" />
         <item itemvalue="Gradle.ScoreBoardLib [test]" />
         <item itemvalue="Gradle.ScoreBoardLib [clean]" />
         <item itemvalue="Gradle.ScoreBoardLib [build]" />
-        <item itemvalue="Gradle.ScoreBoardLib [testClasses]" />
-        <item itemvalue="Gradle.GameTest" />
       </list>
     </recent_temporary>
   </component>
@@ -213,7 +213,7 @@
       <option name="presentableId" value="Default" />
       <updated>1677407149777</updated>
       <workItem from="1677407151098" duration="4375000" />
-      <workItem from="1677411571970" duration="209000" />
+      <workItem from="1677411571970" duration="870000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1677407429198</created>
@@ -236,7 +236,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677408940343</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Game.class tests added">
+      <created>1677411988689</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1677411988689</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,17 +263,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="added task.md and Game.class template" />
-    <option name="LAST_COMMIT_MESSAGE" value="added task.md and Game.class template" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/GameTest.java</url>
-          <line>17</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Game.class tests added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game.class tests added" />
   </component>
 </project>
