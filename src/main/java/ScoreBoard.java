@@ -1,8 +1,11 @@
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ScoreBoard {
-    private List <String> games = new ArrayList<>();
+    @Getter
+    private List <Game> games = new ArrayList<>();
 
     public Game startNewGame(String homeTeamName, String awayTeamName) {
         return null;
@@ -18,10 +21,6 @@ public class ScoreBoard {
     }
 
     public List<String> getSummaryAsStringList() {
-        return null;
-    }
-
-    public Game getGame(String homeTeamName, String awayTeamName) {
         return null;
     }
 }
