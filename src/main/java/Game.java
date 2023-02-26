@@ -14,12 +14,18 @@ public class Game {
     @EqualsAndHashCode.Include
     final private String awayTeamName;
     private int awayTeamScore;
-    final private LocalDateTime creationTime;
+    final private LocalDateTime creationTime = LocalDateTime.now();
+
+    public Game(String homeTeamName, String awayTeamName, int homeTeamScore, int awayTeamScore) {
+        this.homeTeamName = homeTeamName;
+        this.homeTeamScore = homeTeamScore;
+        this.awayTeamName = awayTeamName;
+        this.awayTeamScore = awayTeamScore;
+    }
 
     public Game(String homeTeamName, String awayTeamName) {
         this.homeTeamName = homeTeamName;
         this.awayTeamName = awayTeamName;
-        this.creationTime = LocalDateTime.now();
         this.awayTeamScore = 0;
         this.homeTeamScore = 0;
     }

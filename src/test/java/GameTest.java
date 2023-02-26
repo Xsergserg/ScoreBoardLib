@@ -13,6 +13,14 @@ public class GameTest {
     void setUp() {
         game = new Game(HOME, GUESTS);
     }
+
+    @Test
+    void gameConstructorWithScoresTest() {
+        Game gameWithScores = new Game(HOME, GUESTS, 1, 1);
+        assertEquals(1, gameWithScores.getHomeTeamScore());
+        assertEquals(1, gameWithScores.getAwayTeamScore());
+    }
+
     @Test
     void gameConstructorTest () {
         assertEquals(HOME, game.getHomeTeamName());
@@ -25,9 +33,7 @@ public class GameTest {
     @Test
     void gameEqualityTest() {
         Game sameGame = new Game(HOME, GUESTS);
-        Game sameGameAnotherScore = new Game(HOME, GUESTS);
-        sameGameAnotherScore.setHomeTeamScore(1);
-        sameGameAnotherScore.setAwayTeamScore(1);
+        Game sameGameAnotherScore = new Game(HOME, GUESTS, 1, 1);
         Game anotherGame = new Game("Argentina", "Germany");
         assertEquals(game, sameGame);
         assertEquals(game, sameGameAnotherScore);
