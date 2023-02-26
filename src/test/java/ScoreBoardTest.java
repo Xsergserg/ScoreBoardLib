@@ -1,45 +1,30 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 public class ScoreBoardTest {
-    //ScoreBoard exampleScoreBoard;
-
     ScoreBoard scoreBoard;
+
     @BeforeEach
-    void setUp () {
+    void setUp() {
         scoreBoard = new ScoreBoard();
-       /* exampleScoreBoard = new ScoreBoard();
-        exampleScoreBoard.startNewGame("Mexico", "Canada");
-        exampleScoreBoard.updateScore("Mexico", "Canada", 0, 5);
-        exampleScoreBoard.startNewGame("Spain", "Brazil");
-        exampleScoreBoard.updateScore("Spain", "Brazil", 10, 2);
-        exampleScoreBoard.startNewGame("Germany", "France");
-        exampleScoreBoard.updateScore("Germany", "France", 2, 2);
-        exampleScoreBoard.startNewGame("Uruguay", "Italy");
-        exampleScoreBoard.updateScore("Uruguay", "Italy", 6, 6);
-        exampleScoreBoard.startNewGame("Argentina", "Australia");
-        exampleScoreBoard.updateScore("Argentina", "Australia", 3, 1);*/
     }
 
     @Test
-    void startNewGameNullOrEmptyTests () {
-        Assertions.assertThrows(RuntimeException.class,
-                () -> scoreBoard.startNewGame(null, "guests"));
-        Assertions.assertThrows(RuntimeException.class,
-                () -> scoreBoard.startNewGame("", "guests"));
-        Assertions.assertThrows(RuntimeException.class,
-                () -> scoreBoard.startNewGame("home", null));
-        Assertions.assertThrows(RuntimeException.class,
-                () -> scoreBoard.startNewGame("home", ""));
+    void startNewGameNullOrEmptyTests() {
+        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.startNewGame(null, "guests"));
+        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.startNewGame("", "guests"));
+        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.startNewGame("home", null));
+        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.startNewGame("home", ""));
     }
 
     @Test
-    void startNewGameTest () {
-        //the same game add error
+    void startNewGameTest() {
         Assertions.assertEquals(0, scoreBoard.getGames().size());
         Game createdGame = scoreBoard.startNewGame("USA", "Canada");
         Assertions.assertEquals(0, createdGame.getHomeTeamScore());
@@ -49,17 +34,58 @@ public class ScoreBoardTest {
         Assertions.assertIterableEquals(Collections.singletonList(expectedGame), scoreBoard.getGames());
         scoreBoard.startNewGame("Mexico", "France");
         Assertions.assertIterableEquals(Arrays.asList(expectedGame, new Game("Mexico", "France")), scoreBoard.getGames());
+        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.startNewGame("USA", "Canada"));
     }
 
     @Test
-    void updateScoreTest () {
+    void updateScoreTest() {
         scoreBoard.startNewGame("USA", "Canada");
         scoreBoard.updateScore("USA", "Canada", 1, 2);
-        Game game = scoreBoard.
-        Assertions.assertEquals();
+        Game game = scoreBoard.getGames().get(0);
+        Assertions.assertEquals(1, game.getHomeTeamScore());
+        Assertions.assertEquals(2, game.getAwayTeamScore());
+        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.updateScore("USA", "Canada", -1, 1));
+        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.updateScore("USA", "Canada", 1, -1));
+        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.updateScore("US", "Canada", 1, 1));
+        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.updateScore(null, "Canada", 1, 1));
+        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.updateScore("USA", null, 1, 1));
     }
 
-    private Game getGame(ScoreBoard scoreBoard, Game game) {
-        return scoreBoard.getGames().stream().filter(g -> g.equals(game)).findFirst().orElse(null);
+    @Test
+    void finishGameTest() {
+        scoreBoard.startNewGame("USA", "Canada");
+        Game game = scoreBoard.startNewGame("Mexico", "France");
+        scoreBoard.finishGame("USA", "Canada");
+        Assertions.assertEquals(1, scoreBoard.getGames().size());
+        Assertions.assertTrue(getGameFromScoreBoard(scoreBoard, game).isPresent());
+        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.finishGame("USA", "Canada"));
+        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.finishGame("USA", null));
+        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.finishGame(null, "Canada"));
+    }
+
+    @Test
+    void summaryAsGameListTest() {
+        Assertions.assertEquals(0, scoreBoard.getSummeryAsGameList().size());
+        scoreBoard.startNewGame("Mexico", "Canada");
+        scoreBoard.updateScore("Mexico", "Canada", 0, 5);
+        scoreBoard.startNewGame("Spain", "Brazil");
+        scoreBoard.updateScore("Spain", "Brazil", 10, 2);
+        scoreBoard.startNewGame("Germany", "France");
+        scoreBoard.updateScore("Germany", "France", 2, 2);
+        scoreBoard.startNewGame("Uruguay", "Italy");
+        scoreBoard.updateScore("Uruguay", "Italy", 6, 6);
+        scoreBoard.startNewGame("Argentina", "Australia");
+        scoreBoard.updateScore("Argentina", "Australia", 3, 1);
+        List<Game> expectedGames = Arrays.asList(new Game("Uruguay", "Italy", 6, 6),
+                new Game("Spain", "Brazil", 10, 2),
+                new Game("Mexico", "Canada", 0, 5),
+                new Game("Argentina", "Australia", 3, 1),
+                new Game("Germany", "France", 2, 2)
+        );
+        Assertions.assertIterableEquals(expectedGames, scoreBoard.getSummeryAsGameList());
+    }
+
+    private Optional<Game> getGameFromScoreBoard(ScoreBoard scoreBoard, Game game) {
+        return scoreBoard.getGames().stream().filter(g -> g.equals(game)).findFirst();
     }
 }
