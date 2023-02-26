@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e59d86d5-5d40-4de0-aad1-f2437650e36c" name="Changes" comment="Game.class tests added">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ScoreBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="e59d86d5-5d40-4de0-aad1-f2437650e36c" name="Changes" comment=".idea folder added to gitignore" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -213,7 +210,7 @@
       <option name="presentableId" value="Default" />
       <updated>1677407149777</updated>
       <workItem from="1677407151098" duration="4375000" />
-      <workItem from="1677411571970" duration="870000" />
+      <workItem from="1677411571970" duration="1190000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1677407429198</created>
@@ -243,7 +240,21 @@
       <option name="project" value="LOCAL" />
       <updated>1677411988689</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="ScoreBoard.class template added">
+      <created>1677412698741</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1677412698741</updated>
+    </task>
+    <task id="LOCAL-00006" summary=".idea folder added to gitignore">
+      <created>1677412759559</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1677412759559</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,6 +275,8 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="added task.md and Game.class template" />
     <MESSAGE value="Game.class tests added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Game.class tests added" />
+    <MESSAGE value="ScoreBoard.class template added" />
+    <MESSAGE value=".idea folder added to gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value=".idea folder added to gitignore" />
   </component>
 </project>
