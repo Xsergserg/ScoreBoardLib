@@ -1,3 +1,5 @@
+package com.demo;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,12 +53,13 @@ public class ScoreBoardTest {
     }
 
     @Test
-    void getGameByBadTeamNamesAndIdsTest () {
+    void getGameByBadTeamNamesAndIdsTest() {
         Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.getGameByTeamNames("USA", "Canada"));
         Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.getGameByTeamNames("USA", null));
         Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.getGameByTeamNames(null, "Canada"));
         Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.getGameById(50));
     }
+
     @Test
     void summaryAsGameListTest() {
         Assertions.assertEquals(0, scoreBoard.getSummaryAsGameList().size());

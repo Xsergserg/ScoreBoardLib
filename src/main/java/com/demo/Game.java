@@ -1,3 +1,5 @@
+package com.demo;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -30,14 +32,14 @@ public class Game {
         this.id = id;
     }
 
-    protected void setNewScore (int homeTeamScore, int awayTeamScore) {
+    protected void setNewScore(int homeTeamScore, int awayTeamScore) {
         if (homeTeamScore < 0 || awayTeamScore < 0)
             throw new ScoreBoardException("Score can't be negative value");
         this.homeTeamScore = homeTeamScore;
         this.awayTeamScore = awayTeamScore;
     }
 
-    private void checkTeamNames (String homeTeamName, String awayTeamName) {
+    private void checkTeamNames(String homeTeamName, String awayTeamName) {
         if (homeTeamName == null || homeTeamName.isEmpty() || awayTeamName == null || awayTeamName.isEmpty())
             throw new ScoreBoardException("Team name can't be null or empty field");
     }
