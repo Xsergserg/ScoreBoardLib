@@ -34,8 +34,12 @@ public class ScoreBoard {
         getGameById(gameId).setNewScore(homeTeamScore, awayTeamScore);
     }
 
-    public void finishGame(String homeTeamName, String awayTeamName) {
+    public void finishGameByTeamName(String homeTeamName, String awayTeamName) {
         games.remove(getGameByTeamNames(homeTeamName, awayTeamName));
+    }
+
+    public void finishGameByGameId(int gameId) {
+        games.remove(getGameById(gameId));
     }
 
     public List<Game> getSummaryAsGameList() {

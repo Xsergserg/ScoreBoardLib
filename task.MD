@@ -1,6 +1,6 @@
 **Task:**
 
-Develop a new Live Football World Cup Scoreboard library (or frontend application) that shows all the ongoing matches and their scores.
+Develop a new Live Football World Cup Scoreboard library that shows all the ongoing matches and their scores.
 The scoreboard supports the following operations:
 1. Start a new game, assuming initial score 0 - 0 and adding it the scoreboard. This should capture following parameters:
    a. Home team

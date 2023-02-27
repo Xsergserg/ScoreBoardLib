@@ -47,9 +47,11 @@ public class ScoreBoardTest {
     void finishGameTest() {
         scoreBoard.startNewGame("USA", "Canada");
         Game game = scoreBoard.startNewGame("Mexico", "France");
-        scoreBoard.finishGame("USA", "Canada");
+        scoreBoard.finishGameByTeamName("USA", "Canada");
         Assertions.assertEquals(1, scoreBoard.getGames().size());
         Assertions.assertTrue(getGameFromScoreBoard(scoreBoard, game).isPresent());
+        scoreBoard.finishGameByGameId(1);
+        Assertions.assertEquals(0, scoreBoard.getGames().size());
     }
 
     @Test
