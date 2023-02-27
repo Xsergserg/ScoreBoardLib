@@ -16,14 +16,6 @@ public class ScoreBoardTest {
     }
 
     @Test
-    void startNewGameNullOrEmptyTests() {
-        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.startNewGame(null, "guests"));
-        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.startNewGame("", "guests"));
-        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.startNewGame("home", null));
-        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.startNewGame("home", ""));
-    }
-
-    @Test
     void startNewGameTest() {
         Assertions.assertEquals(0, scoreBoard.getGames().size());
         Game createdGame = scoreBoard.startNewGame("USA", "Canada");
@@ -44,11 +36,6 @@ public class ScoreBoardTest {
         Game game = scoreBoard.getGames().get(0);
         Assertions.assertEquals(1, game.getHomeTeamScore());
         Assertions.assertEquals(2, game.getAwayTeamScore());
-        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.updateScore("USA", "Canada", -1, 1));
-        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.updateScore("USA", "Canada", 1, -1));
-        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.updateScore("US", "Canada", 1, 1));
-        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.updateScore(null, "Canada", 1, 1));
-        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.updateScore("USA", null, 1, 1));
     }
 
     @Test
@@ -58,11 +45,14 @@ public class ScoreBoardTest {
         scoreBoard.finishGame("USA", "Canada");
         Assertions.assertEquals(1, scoreBoard.getGames().size());
         Assertions.assertTrue(getGameFromScoreBoard(scoreBoard, game).isPresent());
-        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.finishGame("USA", "Canada"));
-        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.finishGame("USA", null));
-        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.finishGame(null, "Canada"));
     }
 
+    @Test
+    void getGameByTeamNamesTest () {
+        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.getGameByTeamNames("USA", "Canada"));
+        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.getGameByTeamNames("USA", null));
+        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.getGameByTeamNames(null, "Canada"));
+    }
     @Test
     void summaryAsGameListTest() {
         Assertions.assertEquals(0, scoreBoard.getSummaryAsGameList().size());
@@ -76,11 +66,11 @@ public class ScoreBoardTest {
         scoreBoard.updateScore("Uruguay", "Italy", 6, 6);
         scoreBoard.startNewGame("Argentina", "Australia");
         scoreBoard.updateScore("Argentina", "Australia", 3, 1);
-        List<Game> expectedGames = Arrays.asList(new Game("Uruguay", "Italy", 6, 6, 0),
-                new Game("Spain", "Brazil", 10, 2, 0),
-                new Game("Mexico", "Canada", 0, 5, 0),
-                new Game("Argentina", "Australia", 3, 1, 0),
-                new Game("Germany", "France", 2, 2, 0)
+        List<Game> expectedGames = Arrays.asList(new Game("Uruguay", "Italy", 0),
+                new Game("Spain", "Brazil", 0),
+                new Game("Mexico", "Canada", 0),
+                new Game("Argentina", "Australia", 0),
+                new Game("Germany", "France", 0)
         );
         Assertions.assertIterableEquals(expectedGames, scoreBoard.getSummaryAsGameList());
         Assertions.assertIterableEquals(Arrays.asList(

@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -15,18 +16,31 @@ public class GameTest {
     }
 
     @Test
-    void gameConstructorWithScoresTest() {
-        Game gameWithScores = new Game(HOME, GUESTS, 1, 1, 0);
-        assertEquals(1, gameWithScores.getHomeTeamScore());
-        assertEquals(1, gameWithScores.getAwayTeamScore());
-    }
-
-    @Test
     void gameConstructorTest () {
         assertEquals(HOME, game.getHomeTeamName());
         assertEquals(GUESTS, game.getAwayTeamName());
         assertEquals(0, game.getHomeTeamScore());
         assertEquals(0, game.getAwayTeamScore());
+        Assertions.assertThrows(ScoreBoardException.class, () -> new Game(null, "guests", 0));
+        Assertions.assertThrows(ScoreBoardException.class, () -> new Game("", "guests", 0));
+        Assertions.assertThrows(ScoreBoardException.class, () -> new Game("home", null, 0));
+        Assertions.assertThrows(ScoreBoardException.class, () -> new Game("home", "", 0));
+    }
+
+    @Test
+    void gameConstructorWithScoresTest() {
+        Game gameWithScores = new Game(HOME, GUESTS, 1, 2, 0);
+        assertEquals(1, gameWithScores.getHomeTeamScore());
+        assertEquals(2, gameWithScores.getAwayTeamScore());
+    }
+
+    @Test
+    void setNewScoreTest () {
+        game.setNewScore(1, 1);
+        assertEquals(1, game.getHomeTeamScore());
+        assertEquals(1, game.getAwayTeamScore());
+        Assertions.assertThrows(ScoreBoardException.class, () -> game.setNewScore(-1, 1));
+        Assertions.assertThrows(ScoreBoardException.class, () -> game.setNewScore(1, -1));
     }
 
     @Test
