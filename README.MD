@@ -3,7 +3,7 @@
 ## Description:
 
 Small library provides class ScoreBoard.
-Class has one public constructor (without arguments) and 9 public functions:
+Class has one public constructor (without arguments) and 9 public methods:
 1. startNewGame(String homeTeamName, String awayTeamName) - create new Game Object and add it to ScoreBoard, returns created Game object.
 2. updateScoreByTeamNames(String homeTeamName, String awayTeamName, int homeTeamScore, int awayTeamScore) - update game score by team's names, returns void. 
 3. updateScoreByGameId - update game score by Game id, returns void.
