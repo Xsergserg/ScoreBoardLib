@@ -24,8 +24,12 @@ public class ScoreBoard {
         return game;
     }
 
-    public void updateScore(String homeTeamName, String awayTeamName, int homeTeamScore, int awayTeamScore) {
+    public void updateScoreByTeamNames(String homeTeamName, String awayTeamName, int homeTeamScore, int awayTeamScore) {
         getGameByTeamNames(homeTeamName, awayTeamName).setNewScore(homeTeamScore, awayTeamScore);
+    }
+
+    public void updateScoreByGameId(int gameId, int homeTeamScore, int awayTeamScore) {
+        getGameById(gameId).setNewScore(homeTeamScore, awayTeamScore);
     }
 
     public void finishGame(String homeTeamName, String awayTeamName) {
@@ -48,5 +52,12 @@ public class ScoreBoard {
                 .filter(g -> g.getHomeTeamName().equals(homeTeamName) && g.getAwayTeamName().equals(awayTeamName))
                 .findFirst()
                 .orElseThrow(() -> new ScoreBoardException("Game with specified teams doesn't exist"));
+    }
+
+    public Game getGameById(int gameId) {
+        return games.stream()
+                .filter(g -> g.getId() == gameId)
+                .findFirst()
+                .orElseThrow(() -> new ScoreBoardException("Game with specified Id doesn't exist"));
     }
 }

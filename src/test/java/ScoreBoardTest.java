@@ -32,10 +32,13 @@ public class ScoreBoardTest {
     @Test
     void updateScoreTest() {
         scoreBoard.startNewGame("USA", "Canada");
-        scoreBoard.updateScore("USA", "Canada", 1, 2);
+        scoreBoard.updateScoreByTeamNames("USA", "Canada", 1, 2);
         Game game = scoreBoard.getGames().get(0);
         Assertions.assertEquals(1, game.getHomeTeamScore());
         Assertions.assertEquals(2, game.getAwayTeamScore());
+        scoreBoard.updateScoreByGameId(0, 5, 6);
+        Assertions.assertEquals(5, game.getHomeTeamScore());
+        Assertions.assertEquals(6, game.getAwayTeamScore());
     }
 
     @Test
@@ -48,24 +51,25 @@ public class ScoreBoardTest {
     }
 
     @Test
-    void getGameByTeamNamesTest () {
+    void getGameByBadTeamNamesAndIdsTest () {
         Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.getGameByTeamNames("USA", "Canada"));
         Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.getGameByTeamNames("USA", null));
         Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.getGameByTeamNames(null, "Canada"));
+        Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.getGameById(50));
     }
     @Test
     void summaryAsGameListTest() {
         Assertions.assertEquals(0, scoreBoard.getSummaryAsGameList().size());
         scoreBoard.startNewGame("Mexico", "Canada");
-        scoreBoard.updateScore("Mexico", "Canada", 0, 5);
+        scoreBoard.updateScoreByTeamNames("Mexico", "Canada", 0, 5);
         scoreBoard.startNewGame("Spain", "Brazil");
-        scoreBoard.updateScore("Spain", "Brazil", 10, 2);
+        scoreBoard.updateScoreByTeamNames("Spain", "Brazil", 10, 2);
         scoreBoard.startNewGame("Germany", "France");
-        scoreBoard.updateScore("Germany", "France", 2, 2);
+        scoreBoard.updateScoreByTeamNames("Germany", "France", 2, 2);
         scoreBoard.startNewGame("Uruguay", "Italy");
-        scoreBoard.updateScore("Uruguay", "Italy", 6, 6);
+        scoreBoard.updateScoreByTeamNames("Uruguay", "Italy", 6, 6);
         scoreBoard.startNewGame("Argentina", "Australia");
-        scoreBoard.updateScore("Argentina", "Australia", 3, 1);
+        scoreBoard.updateScoreByTeamNames("Argentina", "Australia", 3, 1);
         List<Game> expectedGames = Arrays.asList(new Game("Uruguay", "Italy", 0),
                 new Game("Spain", "Brazil", 0),
                 new Game("Mexico", "Canada", 0),
