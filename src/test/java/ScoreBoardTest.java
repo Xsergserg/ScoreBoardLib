@@ -29,11 +29,11 @@ public class ScoreBoardTest {
         Game createdGame = scoreBoard.startNewGame("USA", "Canada");
         Assertions.assertEquals(0, createdGame.getHomeTeamScore());
         Assertions.assertEquals(0, createdGame.getAwayTeamScore());
-        Game expectedGame = new Game("USA", "Canada");
+        Game expectedGame = new Game("USA", "Canada", 0);
         Assertions.assertEquals(expectedGame, createdGame);
         Assertions.assertIterableEquals(Collections.singletonList(expectedGame), scoreBoard.getGames());
         scoreBoard.startNewGame("Mexico", "France");
-        Assertions.assertIterableEquals(Arrays.asList(expectedGame, new Game("Mexico", "France")), scoreBoard.getGames());
+        Assertions.assertIterableEquals(Arrays.asList(expectedGame, new Game("Mexico", "France", 0)), scoreBoard.getGames());
         Assertions.assertThrows(ScoreBoardException.class, () -> scoreBoard.startNewGame("USA", "Canada"));
     }
 
@@ -65,7 +65,7 @@ public class ScoreBoardTest {
 
     @Test
     void summaryAsGameListTest() {
-        Assertions.assertEquals(0, scoreBoard.getSummeryAsGameList().size());
+        Assertions.assertEquals(0, scoreBoard.getSummaryAsGameList().size());
         scoreBoard.startNewGame("Mexico", "Canada");
         scoreBoard.updateScore("Mexico", "Canada", 0, 5);
         scoreBoard.startNewGame("Spain", "Brazil");
@@ -76,13 +76,20 @@ public class ScoreBoardTest {
         scoreBoard.updateScore("Uruguay", "Italy", 6, 6);
         scoreBoard.startNewGame("Argentina", "Australia");
         scoreBoard.updateScore("Argentina", "Australia", 3, 1);
-        List<Game> expectedGames = Arrays.asList(new Game("Uruguay", "Italy", 6, 6),
-                new Game("Spain", "Brazil", 10, 2),
-                new Game("Mexico", "Canada", 0, 5),
-                new Game("Argentina", "Australia", 3, 1),
-                new Game("Germany", "France", 2, 2)
+        List<Game> expectedGames = Arrays.asList(new Game("Uruguay", "Italy", 6, 6, 0),
+                new Game("Spain", "Brazil", 10, 2, 0),
+                new Game("Mexico", "Canada", 0, 5, 0),
+                new Game("Argentina", "Australia", 3, 1, 0),
+                new Game("Germany", "France", 2, 2, 0)
         );
-        Assertions.assertIterableEquals(expectedGames, scoreBoard.getSummeryAsGameList());
+        Assertions.assertIterableEquals(expectedGames, scoreBoard.getSummaryAsGameList());
+        Assertions.assertIterableEquals(Arrays.asList(
+                "Uruguay 6 - Italy 6",
+                "Spain 10 - Brazil 2",
+                "Mexico 0 - Canada 5",
+                "Argentina 3 - Australia 1",
+                "Germany 2 - France 2"
+        ), scoreBoard.getSummaryAsStringList());
     }
 
     private Optional<Game> getGameFromScoreBoard(ScoreBoard scoreBoard, Game game) {

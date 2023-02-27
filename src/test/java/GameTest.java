@@ -11,12 +11,12 @@ public class GameTest {
 
     @BeforeEach
     void setUp() {
-        game = new Game(HOME, GUESTS);
+        game = new Game(HOME, GUESTS, 0);
     }
 
     @Test
     void gameConstructorWithScoresTest() {
-        Game gameWithScores = new Game(HOME, GUESTS, 1, 1);
+        Game gameWithScores = new Game(HOME, GUESTS, 1, 1, 0);
         assertEquals(1, gameWithScores.getHomeTeamScore());
         assertEquals(1, gameWithScores.getAwayTeamScore());
     }
@@ -27,14 +27,13 @@ public class GameTest {
         assertEquals(GUESTS, game.getAwayTeamName());
         assertEquals(0, game.getHomeTeamScore());
         assertEquals(0, game.getAwayTeamScore());
-        assertNotNull(game.getCreationTime());
     }
 
     @Test
     void gameEqualityTest() {
-        Game sameGame = new Game(HOME, GUESTS);
-        Game sameGameAnotherScore = new Game(HOME, GUESTS, 1, 1);
-        Game anotherGame = new Game("Argentina", "Germany");
+        Game sameGame = new Game(HOME, GUESTS, 0);
+        Game sameGameAnotherScore = new Game(HOME, GUESTS, 1, 1, 0);
+        Game anotherGame = new Game("Argentina", "Germany", 0);
         assertEquals(game, sameGame);
         assertEquals(game, sameGameAnotherScore);
         assertNotEquals(game, anotherGame);

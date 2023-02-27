@@ -2,8 +2,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -14,20 +12,22 @@ public class Game {
     @EqualsAndHashCode.Include
     final private String awayTeamName;
     private int awayTeamScore;
-    final private LocalDateTime creationTime = LocalDateTime.now();
+    private final int id;
 
-    public Game(String homeTeamName, String awayTeamName, int homeTeamScore, int awayTeamScore) {
+    protected Game(String homeTeamName, String awayTeamName, int homeTeamScore, int awayTeamScore, int id) {
         this.homeTeamName = homeTeamName;
         this.homeTeamScore = homeTeamScore;
         this.awayTeamName = awayTeamName;
         this.awayTeamScore = awayTeamScore;
+        this.id = id;
     }
 
-    public Game(String homeTeamName, String awayTeamName) {
+    public Game(String homeTeamName, String awayTeamName, int id) {
         this.homeTeamName = homeTeamName;
         this.awayTeamName = awayTeamName;
         this.awayTeamScore = 0;
         this.homeTeamScore = 0;
+        this.id = id;
     }
 
     @Override
