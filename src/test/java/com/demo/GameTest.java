@@ -24,10 +24,10 @@ public class GameTest {
         assertEquals(GUESTS, game.getAwayTeamName());
         assertEquals(0, game.getHomeTeamScore());
         assertEquals(0, game.getAwayTeamScore());
-        Assertions.assertThrows(ScoreBoardException.class, () -> new Game(null, "guests", 0));
-        Assertions.assertThrows(ScoreBoardException.class, () -> new Game("", "guests", 0));
-        Assertions.assertThrows(ScoreBoardException.class, () -> new Game("home", null, 0));
-        Assertions.assertThrows(ScoreBoardException.class, () -> new Game("home", "", 0));
+        Assertions.assertThrows(ScoreBoardException.class, () -> new Game(null, GUESTS, 0));
+        Assertions.assertThrows(ScoreBoardException.class, () -> new Game("", GUESTS, 0));
+        Assertions.assertThrows(ScoreBoardException.class, () -> new Game(HOME, null, 0));
+        Assertions.assertThrows(ScoreBoardException.class, () -> new Game(HOME, "", 0));
     }
 
     @Test
